@@ -1,0 +1,59 @@
+/*
+Optimised solution ahead!!!
+Coder organised an event called “Swach Bharat” in which at the end of each day.
+All the waste from the trash cans has been shifted into plastic bags which can carry waste weighing between 1.01 kg and 3.00 kg.
+All of the plastic bags must be dumped into the “Swatch Bharat Truck”. 
+Coder can carry at most 3.00 kg at once. 
+One trip is described as selecting a few bag which together don’t weigh more than 3.00 kg, 
+dumping them in the outdoor “Swatch Bharat Truck” and returning back to the place. 
+Coder wants to make minimum number of trips to the “Swatch Bharat Truck”. 
+Given the number of plastic bags,  n, and the weights of each bag.
+
+For example, given n = 5 plastic bags weighing weight = [1.01, 1.99, 2.5, 1.5, 1.01], 
+Coder can carry all of the trash in 3 trips: [1.01 + 1.99, 2.5, 1.5+1.01].
+
+Constraints:
+
+1 <= n <= 100000
+1.01 <= weight[i] <= 3.0
+
+HINT : Since the min wt is 1.01 there cannot be more than two bags (1.01+1.01+1.01 is > 3.0). Hence this can be easily solved by 2 pointer method.
+Step 1 : Sort the array in ascending order
+Step 2 : Take 2 pointers i and k, i moving forward from 0 position and k moving backward from n-1 position
+
+*/
+
+import java.util.*;
+import java.util.Arrays;
+
+	class trashBag {
+	    public static void main(String args[] ) throws Exception {
+	        Scanner sc = new Scanner(System.in);
+	        int n = sc.nextInt();
+	        double bags[] = new double[n];
+	        for (int i = 0; i<= n-1; i++){
+	            bags[i] = sc.nextDouble();
+	        }
+	        Arrays.sort(bags);
+	        int i = 0;
+	        int k = n-1;
+	        double sum = 0.0;
+	        int flag = 0;
+	        while (i<=k){
+	            sum = bags[i]+bags[k];
+	            if (sum <= 3.0){
+	                flag++;
+	                i++;
+	                k--;
+	        }
+	        else{
+	            flag++;
+	            k--;
+	        }
+	        
+	        }
+	        System.out.println(flag);
+	    }
+	}
+
+	       
