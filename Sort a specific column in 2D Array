@@ -1,0 +1,60 @@
+/*
+Given a 2D array, sort only a specific column as input by the user
+ex:
+Input : If our 2D array is given as (Order MXN) 
+        39 27 11 42 
+        10 93 91 90 
+        54 78 56 89 
+        24 64 20 65
+        
+        Sorting it by values in column 3 
+        
+Output : 39 27 11 42 
+         24 64 20 65 
+         54 78 56 89 
+         10 93 91 90 
+         
+HINT : Use Array.sorts & Comparator 
+
+*/
+
+mport java.util.*;
+
+public class SortColumn {
+	public static void main (String args[]) {
+		
+		Scanner sc = new Scanner (System.in);
+		int M = sc.nextInt();
+		int N = sc.nextInt();
+		int A[][] = new int [M][N];
+		int col = sc.nextInt();
+		
+		sortColumn(A, col-1);
+		
+		System.out.println("The sorted column array : ");
+		System.out.println();
+		
+		for (int i = 0; i<A.length ; i++) {
+			for(int j = 0; j<A[i].length; j++) {
+				System.out.print(A[i][j]+" ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static void sortColumn(int[][]A, int col) {
+		
+		Arrays.sort(A, new Comparator<int[]>(){
+			
+			public int compare(final int[] entry1, final int[] entry2) {
+				
+				if (entry1[col] > entry2[col])
+					return 1;
+				else return -1;
+				
+			}
+			
+		});
+	}
+
+}
